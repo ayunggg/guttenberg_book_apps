@@ -47,7 +47,7 @@ class BookPage extends StatelessWidget {
         () => bookController.isLoading.value == false
             ? bookController.indexPage.value == 0
                 ? screenHome(bookController, scrollController)
-                : FavoriteScreen()
+                : const FavoriteScreen()
             : const LoadingWidget(),
       ),
     );
@@ -147,8 +147,10 @@ class BookPage extends StatelessWidget {
         }
       },
       onEditingComplete: () {
-        bookController.searchBookMethod();
-        bookController.hasMore.value = false;
+        if (bookController.searchController.text.isNotEmpty) {
+          bookController.searchBookMethod();
+          bookController.hasMore.value = false;
+        }
       },
       decoration: InputDecoration(
         prefixIcon: Icon(

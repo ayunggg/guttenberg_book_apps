@@ -107,6 +107,12 @@ class BookController extends GetxController {
     List<Book> list = [];
     try {
       Either<Failure, List<Book>> data = await getAllDataBook(page: page.value);
+      Future.delayed(
+          const Duration(
+            seconds: 4,
+          ),
+          () {});
+
       data.fold(
           (message) => Get.snackbar(
                 "Something Went Wrong",
@@ -123,12 +129,8 @@ class BookController extends GetxController {
         listBook.add(bookModel);
       }
       page.value++;
-      Future.delayed(
-          const Duration(
-            seconds: 2,
-          ), () {
-        isLoadMoreBook.value = false;
-      });
+
+      isLoadMoreBook.value = false;
     } catch (e) {
       Get.snackbar(
         "Something Went Wrong",

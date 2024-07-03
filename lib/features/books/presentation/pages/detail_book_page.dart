@@ -21,7 +21,7 @@ class DetailBookPage extends StatelessWidget {
     bookController.getDetailBook(bookId);
 
     var storage = GetStorage();
-    if(bookController.listBookLiked.isEmpty) {
+    if (bookController.listBookLiked.isEmpty) {
       if (storage.read('listBookLiked') != null) {
         final String decodeString = storage.read('listBookLiked');
 
@@ -32,7 +32,6 @@ class DetailBookPage extends StatelessWidget {
         }
       }
     }
-    
 
     return Scaffold(
       body: Obx(
@@ -164,7 +163,8 @@ class DetailBookPage extends StatelessWidget {
           const SizedBox(
             height: 4,
           ),
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: bookController.bookModel.value.bookshelves!.map((e) {
               return Text(
                 e,
